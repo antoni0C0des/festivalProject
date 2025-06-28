@@ -166,7 +166,7 @@ public class Main {
                         break;
 
                     case 10: // implementacion de una query adicional, crear artistas y anadirlos en la lista y al programa
-                        boolean caso = true; // esto es pra el while que te obliga a seguir hasta que pongas uno que no existe
+                        boolean caso = true; // esta query no es parte de la ordinaria, la hice para ayudar a un compañero
 
                         try (FileWriter escribir = new FileWriter("Artistas.txt", true);
                              BufferedWriter buffer = new BufferedWriter(escribir);
