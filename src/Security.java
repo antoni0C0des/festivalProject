@@ -1,5 +1,5 @@
 public class Security implements NumberInterface {
-    private String nameSecurity;
+    private String nameSecurity; // Declaring here can be skipped just fine
     private double pricePerGuard;
 
     // Constructor
