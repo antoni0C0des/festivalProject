@@ -1,9 +1,20 @@
+// TIPS del desarrollador para que afrontes tu proyecto:
+// 1. Es dificil, pero no imposible: dedicale trabajo diario, medita lo que haces, entiende tu UML (OJO con el UML)
+//    entiende las explicaciones de clase (lleva al dia conceptos de OOP, practica y practica)
+// 2. ponte serio con tu companero (os recomiendo usar control de versiones por github, live editing no es muy viable)
+//    Suele pasar mucho que uno lo haga entero y que el otro no tenga ni idea. Cuidado con eso
+// 3. NO LO DEJES PARA EL ULTIMO MOMENTO, TOTALMENTE INVIABLE, AGOBIO Y SUSPENSO ASEGURADO
+//    la extraordinaria de este era reparar los fallos y hacer mas queries... Se te junta con examenes
+// 4. NO te quemes, de vez en cuando debes descansar para que la cabeza se refresque con ideas, por eso debes
+//    tener margen de tiempo para avanzar en el proyecto, si no esto se vuelve en un agobio
+// 5. Pide ayuda, muchas veces los compas pueden ver fallos que tu no ves. Y ayudalos de vuelta!
+
 import java.io.*;
 import java.util.*;
 
 public class Main {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in); // Aurora will make a mention to this way to improve the scanner
 
     public static void main(String[] args) {
         try {
@@ -262,7 +273,7 @@ public class Main {
     //Attendee reader - DON'T TOUCH
     public static Attendee[] leerAsistentes(String cadena) throws FileNotFoundException {
         File f = new File(cadena);
-        Scanner scanner = new Scanner(f);
+        Scanner scanner = new Scanner(f); // teacher gives you this code, you later on change it so it manages objetcs
 
         Attendee[] attendee = new Attendee[NumberInterface.MAX_ATTENDEES]; // initialize fixed array of 20 positions for Attendee
         int i = 0;
