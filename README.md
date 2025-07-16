@@ -5,3 +5,5 @@ Este software simula el sistema de gestion de un festival, que en si mismo es un
 que compartirlo sirva de ayuda para los que tengan problemas aprendiendo a programar.
 
 Como copiar esto: En intellij IDEA y VSCode hay herramientas de control de versiones donde puedes clonar repos. Simplemente debes pegar la URL en esa seccion y podras cargar el proyecto en cualquier IDE, ya sea Eclipse, VS o Intellij
+
+No dudes en abrir un issue ante cualquier duda o sugerencia.
