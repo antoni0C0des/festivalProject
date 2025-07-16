@@ -1,7 +1,7 @@
 public class Ticket {
 
-    private final int ticketNumber;
-    private final Artist artist;
+    private int ticketNumber;
+    private Artist artist;
 
     // Constructor
     public Ticket(int ticketNumber, Artist artist) {
