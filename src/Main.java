@@ -166,19 +166,20 @@ public class Main {
                         break;
 
                     case 10: // implementacion de una query adicional, crear artistas y anadirlos en la lista y al programa
-                        boolean caso = true; // esta query no es parte de la ordinaria, la hice para ayudar a un compañero
+                        boolean caso = true; // es un fragmento de la extraordinaria, hecha para ayudar a un companero
+                                             // NOTE: deberia formar parte de una query, pero la hice a parte para no tocar codigo de la ordinaria
 
                         try (FileWriter escribir = new FileWriter("Artistas.txt", true);
                              BufferedWriter buffer = new BufferedWriter(escribir);
-                             PrintWriter salida = new PrintWriter(buffer)) { // todo el porro de meter archivos de texto
+                             PrintWriter salida = new PrintWriter(buffer)) { // funciones de archivos de texto
 
                             System.out.println("Registering new artist. Please enter the name");
                             while (caso) {
                                 artistName = scanner.next();
-                                if (festival.doesArtisExist(artistName)) { // espero que tengas este metodo o algo similar
+                                if (festival.doesArtisExist(artistName)) {
                                     System.out.println("This artist exists!");
                                 } else {
-                                    caso = false; // para que el while loop no siga
+                                    caso = false;
                                     // variables predeterminadas porque no puedes pasar un metodo que le falte parametros
                                     boolean mainArtist;
                                     int ticketPrice;
@@ -187,8 +188,8 @@ public class Main {
                                     boolean assisting;
                                     int numMembers = 0;
                                     boolean sellMerch = false;
-                                    boolean needsDressingRoom = false; // estas variables las inicializo porq no puedes pasar params vacios a un metodo. De todas formas, el metodo de crear artistas
-                                    int managerPhone = 0;              // es listo y no va a meter valores equivocados por lo q no pasa nada si pasas por ej 0 en un tipo grupo
+                                    boolean needsDressingRoom = false; // estas variables las inicializo porque no puedes pasar params vacios a un metodo. De todas formas, el metodo de crear artistas
+                                    int managerPhone = 0;              // filtra datos y no va a meter valores equivocados por lo q no pasa nada si pasas por ej 0 en un tipo grupo
 
                                     System.out.println("Group or solo? please write 'g' or 's'");
                                     String type = scanner.next();
