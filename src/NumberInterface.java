@@ -16,7 +16,7 @@ public interface NumberInterface {
     // Section of limits
     int MAX_ARTISTS = 20;
     int MAX_ATTENDEES = 20;
-    int MAX_TICKETS = 2;
+    int MAX_TICKETS = 7;
 
      // Values are in thousands of people. For calculations related to this, we need to multiply by 1000
     int PEOPLE_RATE = 1000;
