@@ -34,6 +34,5 @@ public class Solo extends Artist {
     }
 }
 
-// TIP: he visto gente hacer el toString de estas clases en la propia clase abstracta, pero desde mi punto de vista,
-// es mas flexible tener los toStrings en las clases hijas
+// TIP: he visto gente hacer el toString de estas clases en la propia clase abstracta, pero es más simple en las clases específicas
 

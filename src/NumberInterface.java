@@ -10,7 +10,7 @@ public interface NumberInterface {
     int MERCH_DISCOUNT_PREVIOUS = 15;
 
     // Section of prices (Euros)
-    int TSHIRT_PRICE = 25;
+    int SHIRT_PRICE = 25;
     int GUARD_PRICE = 250;
 
     // Section of limits

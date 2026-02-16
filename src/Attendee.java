@@ -38,8 +38,7 @@ public class Attendee {
 
     //Ticket adder method
     /* make new Ticket object in the array of tickets that an Attendee has. We add 1
-    to numberTickets so it is more human manageable for both the client and us the programmers. It
-    passes Artist object (has-a), this allows the Ticket to have object data from an Artist */
+    to numberTickets so it is more human-like for both the client and us the programmers. It has the artist object */
     public boolean addTicket(Artist artist) throws MaxTicketsReachedException {
         if (numberTickets >= ticket.length) {
             throw new MaxTicketsReachedException("The attendee has reached the maximum number of tickets allowed");

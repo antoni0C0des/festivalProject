@@ -4,7 +4,7 @@ public class Festival implements NumberInterface {
     private Attendee[] attendeeList;
 
     //Constructor
-    public Festival(String name, String city, Artist[] artistList, Attendee[] attendeeList, int numberOfArtists, int numberOfAttendees) {
+    public Festival(Artist[] artistList, Attendee[] attendeeList) {
         this.artistList = artistList;
         this.attendeeList = attendeeList;
     }
@@ -32,11 +32,11 @@ public class Festival implements NumberInterface {
 
     public boolean doesArtisExist(String artistName) {
         return fetchArtistArrayPos(artistName) != -1;
-    } // These are handler methods that avoid crashes. They check if posFetcher methods failed and give the menu ways to handle wrong dni/name inputs
+    } // These are handler methods that avoid crashes. They check if poseFetcher methods failed and give the menu ways to handle wrong dni/name inputs
 
     public boolean doesAttendeeExist(String dni) {
         return fetchAttendeePos(dni) != -1;
-    } // They depend on the posFetcher methods, but these checkers are used often in the menu, that's why they're public
+    } // They depend on the poseFetcher methods, but these checkers are used often in the menu, that's why they're public
 
     // --------- METHODS --------------------------------------- //
     // 1. method showInfoArtist. toString turns the data from Artist(s) into readable String(s), we loop in the Artist array so we can run toString at each position
@@ -121,19 +121,20 @@ public class Festival implements NumberInterface {
         double fullConcertPrice = 0;
         double fullMerchPrice = 0;
         double ticketPrice;
-        double tshirtPrice = TSHIRT_PRICE; // can suffer changes so we use the constant to load a variable
+        double tShirtPrice = SHIRT_PRICE; // can suffer changes so we use the constant to load a variable
 
         for (int i = 0; i < artistList.length; i++) {
-            if (artistList[i] != null) { // SKIP empty Artist in the array. Such skippers will be used often
+            if (artistList[i] != null) {
+                // SKIP empty Artist in the array. Such skippers will be used often
                 if (artistList[i].getConfirmed() && artistList[i].getMainEvent()) { // checker if they're confirmed AND main artists (headliner)
                     ticketPrice = fetchDiscountTicket(artistList[i].getArtistName(), dni); // discount fetcher
                     fullConcertPrice += ticketPrice;
                 }
                 if (artistList[i].hasStand()) {
                     if (attendeeList[attendeePos].getFrequent()) {
-                        tshirtPrice *= (1 - (double) MERCH_DISCOUNT_PREVIOUS / 100); // here is an integer division in a float-point context, so we cast numerator as a double.
+                        tShirtPrice *= (1 - (double) MERCH_DISCOUNT_PREVIOUS / 100); // here is an integer division in a float-point context, so we cast numerator as a double.
                     }                                                                // why? because this makes sure the result is a double (we are in a price-value context, we might manage decimals)
-                    fullMerchPrice += tshirtPrice;
+                    fullMerchPrice += tShirtPrice;
                 }
             }
         }
@@ -162,13 +163,13 @@ public class Festival implements NumberInterface {
                     Attendee newAttendee = new Attendee(nameAttendee, dni, creditCard, frequent, false);
                     attendeeList[i] = newAttendee;
                 }
-                return; // without this return, the method loops until it fills the Attendee array
+                return; // without this return, the method loops until it fills the Attendee array (this is bad!)
             }
         }
         throw new IllegalStateException("No more attendees can be added (max of " + MAX_ATTENDEES + ")"); //
     }
 
-    public void artistMaker(String type, String artistName, String genre, boolean mainArtist, int ticketPrice, int duration,int capacity, boolean assisting, int numMembers, boolean sellMerch, boolean needsDressRoom, int mngrPhone) {
+    public void artistMaker(String type, String artistName, String genre, boolean mainArtist, int ticketPrice, int duration,int capacity, boolean assisting, int numMembers, boolean sellMerch, boolean needsDressRoom, int mgrPhone) {
         for (int i = 0; i < artistList.length; i++) {
             if (artistList[i] == null) {
                 if (type.equalsIgnoreCase("g")) {
@@ -176,7 +177,7 @@ public class Festival implements NumberInterface {
                     artistList[i] = newGroup;
                 }
                 else {
-                    Artist newSolo = new Solo(type, artistName, genre, mainArtist, ticketPrice, duration, capacity, assisting, needsDressRoom, mngrPhone);
+                    Artist newSolo = new Solo(type, artistName, genre, mainArtist, ticketPrice, duration, capacity, assisting, needsDressRoom, mgrPhone);
                     artistList[i] = newSolo;
                 }
                 return;

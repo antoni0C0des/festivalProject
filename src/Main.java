@@ -1,27 +1,24 @@
 // TIPS del desarrollador para que afrontes tu proyecto:
-// 1. Es dificil, pero no imposible: dedicale trabajo diario, medita lo que haces, entiende tu UML (OJO con el UML)
-//    entiende las explicaciones de clase (lleva al dia conceptos de OOP, practica y practica)
-// 2. ponte serio con tu companero (os recomiendo usar control de versiones por github, live editing no es muy viable)
-//    Suele pasar mucho que uno lo haga entero y que el otro no tenga ni idea. Cuidado con eso
-// 3. NO LO DEJES PARA EL ULTIMO MOMENTO, TOTALMENTE INVIABLE, AGOBIO Y SUSPENSO ASEGURADO
-//    la extraordinaria de este era reparar los fallos y hacer mas queries... Se te junta con examenes
-// 4. NO te quemes, de vez en cuando debes descansar para que la cabeza se refresque con ideas, por eso debes
-//    tener margen de tiempo para avanzar en el proyecto, si no esto se vuelve en un agobio
-// 5. Pide ayuda, muchas veces los compas pueden ver fallos que tu no ves. Y ayudalos de vuelta!
+// 1. Es difícil. Dedícale trabajo diario, medita lo que haces, entiende tu UML (OJO con el UML)
+//    entiende las explicaciones de clase (lleva al día conceptos de OOP, práctica)
+// 2. Usa control de versiones por github, live editing no es muy viable
+//    suele pasar que se reparte regular el trabajo
+// 3. NO LO DEJES PARA EL ÚLTIMO MOMENTO
+// 4. Cuando estés bloqueado, toma pausas
 
 import java.io.*;
 import java.util.*;
 
 public class Main {
 
-    private static final Scanner scanner = new Scanner(System.in); // Aurora will make a mention to this way to improve the scanner
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         try {
             Artist[] artist = leerArtistas("Artistas.txt");
             Attendee[] attendee = leerAsistentes("Asistentes.txt");
-            Security security = new Security("Evento Seguro S.L.", NumberInterface.GUARD_PRICE);
-            Festival festival = new Festival("Festival", "Ciudad Real", artist, attendee, NumberInterface.MAX_ARTISTS, NumberInterface.MAX_ATTENDEES);
+            Security security = new Security("Evento Safe S.L.", NumberInterface.GUARD_PRICE);
+            Festival festival = new Festival(artist, attendee);
             System.out.println("Booting festival management system..." + "\n" + "Welcome to the festival management system. Select an option");
             menuExecute(festival, security);
         } catch (FileNotFoundException e) {
@@ -29,10 +26,10 @@ public class Main {
         }
 
         /* test toString section ------ DEBUG LEGACY ------
-        Attendee attendeetest = new Attendee("Antonio", "55550000A", "1234567890123456", false, false);
+        Attendee attende_test = new Attendee("Antonio", "55550000A", "1234567890123456", false, false);
         System.out.println(attendeetest.toString()); //creates objects to be inserted in the array.
 
-        Attendee VIPtest = new VIP("Messi", "555A", "1234567890123456", false, true, 3232);
+        Attendee VIP_test = new VIP("Messi", "555A", "1234567890123456", false, true, 3232);
         System.out.println(VIPtest.toString());
 
         Artist soloTest = new Solo("s", "Quevedo", "reggaeton", false, 40, 60, 5, true, false, 987654321);
@@ -103,9 +100,9 @@ public class Main {
                         Attendee attendeeCall;
                         Artist artistCall;
 
-                        // See this as two modules to gather data: we jump to one or another based on the existence of an Attendee, gathered from input attendeeDni
+                        // See this as two modules to gather data: we jump to one or another based on the existence of an Attendee, gathered from input attendeeDNI
                         if (festival.doesAttendeeExist(dni)) {
-                            attendeeCall = festival.getAttendeeByDni(dni); // create the Attendee corresponding to attendeeDni
+                            attendeeCall = festival.getAttendeeByDni(dni); // create the Attendee corresponding to attendeeDNI
                             System.out.println("Attendee appears to exist. Purchasing ticket...");
                             artistName = artistNameInputTool();
                             if (festival.doesArtisExist(artistName)) { // use checker method to see if input artist exist
@@ -113,7 +110,7 @@ public class Main {
                                 if (!artistCall.getConfirmed()) System.out.println("Warning: this artist is not confirmed"); // small block to warn for unconfirmed Artist
                                 try {
                                     if (attendeeCall.addTicket(artistCall)) { //IMPORTANT: uses addTicket method from Attendee
-                                        System.out.println("Ticket added"); // if method returned true, it means it ran successfully
+                                        System.out.println("Ticket added"); // if method returned true, it means it ran successfully  SPAGHETTI
                                     }
                                 } catch (MaxTicketsReachedException e) { // if method did not run successfully, exception is thrown, to be caught here
                                     System.out.println("Error: " + e.getMessage());
@@ -176,9 +173,9 @@ public class Main {
                         System.out.println(festival.showAttendeeInfo());
                         break;
 
-                    case 10: // implementacion de una query adicional, crear artistas y anadirlos en la lista y al programa
-                        boolean caso = true; // es un fragmento de la extraordinaria, hecha para ayudar a un companero
-                                             // NOTE: deberia formar parte de una query, pero la hice a parte para no tocar codigo de la ordinaria
+                    case 10: // implementación de una query adicional, crear artistas y añadirlos en la lista y al programa
+                        boolean caso = true; // es un fragmento de la extraordinaria, hecha para ayudar a un compañero
+                                             // NOTE: debería formar parte de una query, pero la hice aparte para no tocar código de la ordinaria
 
                         try (FileWriter escribir = new FileWriter("Artistas.txt", true);
                              BufferedWriter buffer = new BufferedWriter(escribir);
@@ -191,7 +188,7 @@ public class Main {
                                     System.out.println("This artist exists!");
                                 } else {
                                     caso = false;
-                                    // variables predeterminadas porque no puedes pasar un metodo que le falte parametros
+                                    // variables predeterminadas porque no puedes pasar un método que le falte parámetros
                                     boolean mainArtist;
                                     int ticketPrice;
                                     int duration;
@@ -199,14 +196,14 @@ public class Main {
                                     boolean assisting;
                                     int numMembers = 0;
                                     boolean sellMerch = false;
-                                    boolean needsDressingRoom = false; // estas variables las inicializo porque no puedes pasar params vacios a un metodo. De todas formas, el metodo de crear artistas
-                                    int managerPhone = 0;              // filtra datos y no va a meter valores equivocados por lo q no pasa nada si pasas por ej 0 en un tipo grupo
+                                    boolean needsDressingRoom = false;
+                                    int managerPhone = 0;
 
                                     System.out.println("Group or solo? please write 'g' or 's'");
                                     String type = scanner.next();
 
                                     if (!type.equals("g") && !type.equals("s")) {
-                                        throw new InputMismatchException("invalid input"); // cosa opcional que no estaria feo que pongas
+                                        throw new InputMismatchException("invalid input"); // cosa opcional que no estaría feo que pongas
                                     }
 
                                     System.out.println("Genre?");
@@ -273,7 +270,7 @@ public class Main {
     //Attendee reader - DON'T TOUCH
     public static Attendee[] leerAsistentes(String cadena) throws FileNotFoundException {
         File f = new File(cadena);
-        Scanner scanner = new Scanner(f); // teacher gives you this code, you later on change it so it manages objetcs
+        Scanner scanner = new Scanner(f); // teacher gives you this code, you later on change it so it manages objects
 
         Attendee[] attendee = new Attendee[NumberInterface.MAX_ATTENDEES]; // initialize fixed array of 20 positions for Attendee
         int i = 0;
@@ -312,7 +309,7 @@ public class Main {
 
         String nombre, genre, type;
         boolean attendance, main_event, merch, dressingRoom;
-        int price, numPeople, time, phoneMngr, groupNum;
+        int price, numPeople, time, phoneManager, groupNum;
 
         while (scanner.hasNext()) {
             type = scanner.next();
@@ -330,8 +327,8 @@ public class Main {
                 artist[i] = new Group(type, nombre, genre, main_event, price, time, numPeople, attendance, groupNum, merch);
             } else if (Objects.equals(type, "s")) {
                 dressingRoom = scanner.nextBoolean();
-                phoneMngr = scanner.nextInt();
-                artist[i] = new Solo (type, nombre, genre, main_event, price, time, numPeople, attendance, dressingRoom, phoneMngr);
+                phoneManager = scanner.nextInt();
+                artist[i] = new Solo (type, nombre, genre, main_event, price, time, numPeople, attendance, dressingRoom, phoneManager);
             }
             i++; // after each read, go to next array
         }

@@ -13,5 +13,5 @@ public class Security implements NumberInterface {
     }
 }
 
-// indepenent class: Festival depends on Security, like a car depends on an engine. Festival can't exist without Security,
+// independent class: Festival depends on Security, like a car depends on an engine. Festival can't exist without Security,
 // but Security can exist by itself
