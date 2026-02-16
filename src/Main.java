@@ -15,8 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Artist[] artist = leerArtistas("Artistas.txt");
-            Attendee[] attendee = leerAsistentes("Asistentes.txt");
+            Artist[] artist = leerArtistas("./resources/Artistas.txt");
+            Attendee[] attendee = leerAsistentes("./resources/Asistentes.txt");
             Security security = new Security("Evento Safe S.L.", NumberInterface.GUARD_PRICE);
             Festival festival = new Festival(artist, attendee);
             System.out.println("Booting festival management system..." + "\n" + "Welcome to the festival management system. Select an option");
