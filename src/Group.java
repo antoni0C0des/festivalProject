@@ -26,6 +26,8 @@ public class Group extends Artist {
                 " | Is assisting? " + confirmed +
                 " | Members number: " + groupNumber +
                 " | Selling merch? " + stand;
-    } // the toString does not need to fetch the type of artist. We have two different toStrings per child class,
-    // so we can write Group or Soloist next to the name. This makes better formatting
+    }
 }
+    /* the toString does not need to fetch the type of artist. We have two different toStrings per child class,
+    so we can write Group or Soloist next to the name. This makes better formatting */
+

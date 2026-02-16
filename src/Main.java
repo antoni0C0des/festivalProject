@@ -29,7 +29,7 @@ public class Main {
         Attendee attende_test = new Attendee("Antonio", "55550000A", "1234567890123456", false, false);
         System.out.println(attendeetest.toString()); //creates objects to be inserted in the array.
 
-        Attendee VIP_test = new VIP("Messi", "555A", "1234567890123456", false, true, 3232);
+        Attendee VIP_test = new VIP("Messi", "555A", "123781234506", false, true, 3232);
         System.out.println(VIPtest.toString());
 
         Artist soloTest = new Solo("s", "Quevedo", "reggaeton", false, 40, 60, 5, true, false, 987654321);
@@ -105,12 +105,12 @@ public class Main {
                             attendeeCall = festival.getAttendeeByDni(dni); // create the Attendee corresponding to attendeeDNI
                             System.out.println("Attendee appears to exist. Purchasing ticket...");
                             artistName = artistNameInputTool();
-                            if (festival.doesArtisExist(artistName)) { // use checker method to see if input artist exist
+                            if (festival.doesArtisExist(artistName)) { // use checker method to see if input artist exists
                                 artistCall = festival.getArtistByName(artistName);
                                 if (!artistCall.getConfirmed()) System.out.println("Warning: this artist is not confirmed"); // small block to warn for unconfirmed Artist
                                 try {
                                     if (attendeeCall.addTicket(artistCall)) { //IMPORTANT: uses addTicket method from Attendee
-                                        System.out.println("Ticket added"); // if method returned true, it means it ran successfully  SPAGHETTI
+                                        System.out.println("Ticket added"); // if method returned true, it means it ran successfully
                                     }
                                 } catch (MaxTicketsReachedException e) { // if method did not run successfully, exception is thrown, to be caught here
                                     System.out.println("Error: " + e.getMessage());
@@ -119,7 +119,7 @@ public class Main {
 
                         } else {
                             System.out.println("Attendee does not exist. You can create one and then add tickets to them. Proceed? (y/n)");
-                            String response = scanner.next(); // not a query request but this was used to debug, it's also a QOL feature
+                            String response = scanner.next(); // not a query request, but this was used to debug, it's also a QOL feature
                             if (response.equalsIgnoreCase("y")) {
                                 System.out.println("Enter the name:");
                                 String nameAttendee = scanner.next();
